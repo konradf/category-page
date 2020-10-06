@@ -22,7 +22,7 @@ export var ArticleCard = ({ article }: { article: Article }) => {
       <div>{formatter.format(article.prices.regular.value / 100)}</div>
       <section role="button">Add to cart</section>
     </div>
-  )
+  );
 };
 
 class ArticleList extends React.Component {
@@ -36,8 +36,9 @@ class ArticleList extends React.Component {
     xhr.open('POST', '/graphql');
     xhr.setRequestHeader('Content-Type', 'application/json');
 
-    xhr.send(JSON.stringify({
-      query: `{
+    xhr.send(
+      JSON.stringify({
+        query: `{
         categories(ids: "156126", locale: de_DE) {
           name
           articleCount
@@ -67,7 +68,8 @@ class ArticleList extends React.Component {
           }
         }
       }`,
-    }));
+      })
+    );
 
     xhr.onload = () => {
       if (xhr.status === 200) {
@@ -75,7 +77,7 @@ class ArticleList extends React.Component {
 
         this.setState({ categories: response.data.categories });
       }
-    }
+    };
   }
 
   render() {
@@ -121,9 +123,7 @@ class ArticleList extends React.Component {
           <div className={'articles'}>{articles}</div>
         </div>
 
-        <div className={'footer'}>
-          Alle Preise sind in Euro (€) inkl. gesetzlicher Umsatzsteuer und Versandkosten.
-        </div>
+        <div className={'footer'}>Alle Preise sind in Euro (€) inkl. gesetzlicher Umsatzsteuer und Versandkosten.</div>
       </div>
     );
   }

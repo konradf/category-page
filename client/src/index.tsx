@@ -9,4 +9,4 @@ ReactDOM.render(
     <ProductList />
   </React.StrictMode>,
   document.getElementById('root')
-)
+);
