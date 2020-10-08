@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './assets/logo.svg';
-import { ArticleList, CategoryList, CategoryTitle } from './components';
+import { ArticleList, CategoryList, CategoryTitle, Search } from './components';
 import { Content, Footer, Header, Page, Sidebar } from './components/Layout';
 import { Article, Category } from './types';
 import { categoryExists, fetchCategory, filterCategoryArticles } from './libs';
@@ -35,18 +35,17 @@ const CategoryPage: React.FunctionComponent<CategoryPageProps> = ({ id }) => {
     setSearch(event.target.value);
   };
 
-  const categories = category?.childrenCategories ?? [];
-
   return (
     <Page>
       <Header>
-        <img src={Logo} width="120" alt="Home 24" onClick={() => setRoute('')} />
-        <input placeholder={'Search'} value={search} onChange={handleChange} />
+        <figure>
+          <img src={Logo} width="120" alt="Home 24" onClick={() => setRoute('')} />
+        </figure>
+        <Search placeholder="Search..." value={search} onChange={handleChange} />
       </Header>
 
       <Sidebar>
-        <h3>Kategorien</h3>
-        <CategoryList categories={categories} route={route} setRoute={setRoute} />
+        <CategoryList categories={category?.childrenCategories} route={route} setRoute={setRoute} />
       </Sidebar>
 
       <Content>

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import { Category } from '../types';
 import { getCategorySummary } from '../libs';
 
@@ -7,15 +8,22 @@ interface CategoryTitleProps {
   route: string;
 }
 
+const Header = styled('h1')`
+  margin-top: 8px;
+  small {
+    font-weight: 400;
+  }
+`;
+
 export const CategoryTitle: React.FunctionComponent<CategoryTitleProps> = ({ category, route }) => {
   const { name, articleCount } = getCategorySummary(category, route);
 
   return (
     <>
-      <h1>
+      <Header>
         {name}
-        <small>({articleCount})</small>
-      </h1>
+        <small> ({articleCount})</small>
+      </Header>
     </>
   );
 };

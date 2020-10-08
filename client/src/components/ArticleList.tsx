@@ -1,17 +1,22 @@
 import React from 'react';
-import { Article } from '../types';
+import styled from '@emotion/styled';
 import { ArticleCard } from './ArticleCard';
+import { Article } from '../types';
 
-import './ArticleList.css';
+const Articles = styled('section')`
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+`;
 
 interface ArticleListProps {
   articles: Article[];
 }
 
 export const ArticleList: React.FunctionComponent<ArticleListProps> = ({ articles }) => (
-  <div className={'articles'}>
+  <Articles>
     {articles.map((article) => (
       <ArticleCard key={`${article.name}|${article.variantName}`} article={article} />
     ))}
-  </div>
+  </Articles>
 );
