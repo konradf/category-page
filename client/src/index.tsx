@@ -1,12 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom';
+import { CategoryPage } from './CategoryPage';
+import { MAIN_CATEGORY } from './config';
 
 import './index.css';
-import ProductList from './ProductList';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductList />
+    <CategoryPage id={MAIN_CATEGORY} />
   </React.StrictMode>,
   document.getElementById('root')
 );

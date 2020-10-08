@@ -15,6 +15,8 @@ export type Article = {
 export type ChildCategory = {
   name: string;
   urlPath: string;
+  articleCount: number;
+  categoryArticles: CategoryArticle;
 };
 
 export type Prices = {
