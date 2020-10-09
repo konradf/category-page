@@ -1,12 +1,11 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import Logo from './assets/logo.svg';
-import { ArticleList, CategoryList, CategoryTitle, Search, Error } from './components';
+import { ArticleList, CategoryList, CategoryTitle, Search, Error, Loader } from './components';
 import { Content, Footer, Header, Page, Sidebar } from './components/Layout';
-import { Article, Category } from './types';
 import { categoryExists, fetchCategory, filterCategoryArticles, theme } from './libs';
 import { useRouter } from './hooks';
-import { Loader } from './components/Loader';
+import { Article, Category } from './types';
 
 interface CategoryPageProps {
   id: string;
@@ -14,9 +13,9 @@ interface CategoryPageProps {
 
 const CategoryPage: React.FunctionComponent<CategoryPageProps> = ({ id }) => {
   const [category, setCategory] = React.useState<Category>();
-  const [error, setError] = React.useState(false);
   const [articles, setArticles] = React.useState<Article[]>();
   const [search, setSearch] = React.useState('');
+  const [error, setError] = React.useState(false);
   const [route, setRoute] = useRouter();
 
   React.useEffect(() => {

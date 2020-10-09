@@ -1,6 +1,6 @@
 import React from 'react';
-import { Category } from '../types';
 import { getCategorySummary, styled } from '../libs';
+import { Category } from '../types';
 
 interface CategoryTitleProps {
   category: Category;

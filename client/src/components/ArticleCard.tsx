@@ -1,6 +1,6 @@
 import React from 'react';
-import { Article as ArticleType } from '../types';
 import { priceFormatter, styled } from '../libs';
+import { Article as ArticleType } from '../types';
 
 interface ArticleCardProps {
   article: ArticleType;
