@@ -50,8 +50,6 @@ export const CategoryList: React.FunctionComponent<CategoryListProps> = ({ categ
     <Title>Kategorien</Title>
     <Divider />
 
-    {!categories && 'Loading ...'}
-
     <nav>
       <List>
         {categories?.map(({ name, urlPath }) => (

@@ -6,6 +6,7 @@ import { Content, Footer, Header, Page, Sidebar } from './components/Layout';
 import { Article, Category } from './types';
 import { categoryExists, fetchCategory, filterCategoryArticles, theme } from './libs';
 import { useRouter } from './hooks';
+import { Loader } from './components/Loader';
 
 interface CategoryPageProps {
   id: string;
@@ -51,6 +52,7 @@ const CategoryPage: React.FunctionComponent<CategoryPageProps> = ({ id }) => {
         </Sidebar>
 
         <Content>
+          {!category && <Loader />}
           {category && <CategoryTitle category={category} route={route} />}
           {articles && <ArticleList articles={articles} />}
         </Content>
