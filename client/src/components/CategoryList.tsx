@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled/macro';
+import { styled } from '../libs';
 import { ChildCategory } from '../types';
 
 const Title = styled('h3')`
@@ -7,7 +7,7 @@ const Title = styled('h3')`
 `;
 
 const Divider = styled('hr')`
-  border-top: 1px solid #dcd9d9;
+  border-top: 1px solid ${({ theme }) => theme.color.gray};
   margin-left: 20px;
   width: 130px;
 `;
@@ -15,11 +15,6 @@ const Divider = styled('hr')`
 const List = styled('ul')`
   list-style-type: none;
   padding: 0;
-`;
-
-const ListItemLink = styled('a')`
-  font-weight: bold;
-  text-decoration: none;
 `;
 
 interface ListItemProps {
@@ -31,13 +26,15 @@ const ListItem = styled('li')<ListItemProps>`
   padding: 10px 20px;
   display: block;
   cursor: pointer;
-  ${ListItemLink} {
-    color: ${({ active }) => (active ? '#e65100' : '#333')};
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    color: ${({ active, theme }) => (active ? theme.color.orange : theme.color.dark)};
   }
   &:hover {
-    background-color: #e65100;
-    ${ListItemLink} {
-      color: #fff;
+    background-color: ${({ theme }) => theme.color.orange};
+    a {
+      color: ${({ theme }) => theme.color.white};
     }
   }
 `;
@@ -65,14 +62,14 @@ export const CategoryList: React.FunctionComponent<CategoryListProps> = ({ categ
             }}
             active={urlPath === route}
           >
-            <ListItemLink
+            <a
               href={`/${urlPath}`}
               onClick={(e) => {
                 e.preventDefault();
               }}
             >
               {name}
-            </ListItemLink>
+            </a>
           </ListItem>
         ))}
       </List>

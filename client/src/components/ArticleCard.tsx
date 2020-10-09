@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { Article as ArticleType } from '../types';
-import { priceFormatter } from '../libs';
+import { priceFormatter, styled } from '../libs';
 
 interface ArticleCardProps {
   article: ArticleType;
@@ -12,7 +11,7 @@ const Article = styled('article')`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border: 1px solid #fff;
+  border: 1px solid ${({ theme }) => theme.color.white};
   padding: 10px;
   transition: box-shadow 0.15s ease-in-out;
   &:hover {
@@ -31,7 +30,7 @@ const Title = styled('div')`
 const Price = styled('div')`
   text-align: center;
   font-weight: bold;
-  color: #e65100;
+  color: ${({ theme }) => theme.color.orange};
 `;
 
 const Button = styled('div')`
@@ -40,15 +39,15 @@ const Button = styled('div')`
   padding: 5px 0;
   cursor: pointer;
   text-align: center;
-  background-color: #fff;
-  color: #780935;
-  border: 1px solid #780935;
+  background-color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.red};
+  border: 1px solid ${({ theme }) => theme.color.red};
   font-weight: 500;
   border-radius: 10px;
   transition: background-color 0.3s ease, color 0.3s ease-in-out;
   &:hover {
-    background-color: #780935;
-    color: #fff;
+    background-color: ${({ theme }) => theme.color.red};
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 

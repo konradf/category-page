@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { ArticleCard } from './ArticleCard';
+import { styled } from '../libs';
 import { Article } from '../types';
 
 const Articles = styled('section')`

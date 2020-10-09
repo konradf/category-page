@@ -1,9 +1,10 @@
 import React from 'react';
+import { ThemeProvider } from 'emotion-theming';
 import Logo from './assets/logo.svg';
 import { ArticleList, CategoryList, CategoryTitle, Search } from './components';
 import { Content, Footer, Header, Page, Sidebar } from './components/Layout';
 import { Article, Category } from './types';
-import { categoryExists, fetchCategory, filterCategoryArticles } from './libs';
+import { categoryExists, fetchCategory, filterCategoryArticles, theme } from './libs';
 import { useRouter } from './hooks';
 
 interface CategoryPageProps {
@@ -36,25 +37,27 @@ const CategoryPage: React.FunctionComponent<CategoryPageProps> = ({ id }) => {
   };
 
   return (
-    <Page>
-      <Header>
-        <figure>
-          <img src={Logo} width="120" alt="Home 24" onClick={() => setRoute('')} />
-        </figure>
-        <Search placeholder="Search..." value={search} onChange={handleChange} />
-      </Header>
+    <ThemeProvider theme={theme}>
+      <Page>
+        <Header>
+          <figure>
+            <img src={Logo} width="120" alt="Home 24" onClick={() => setRoute('')} />
+          </figure>
+          <Search placeholder="Search..." value={search} onChange={handleChange} />
+        </Header>
 
-      <Sidebar>
-        <CategoryList categories={category?.childrenCategories} route={route} setRoute={setRoute} />
-      </Sidebar>
+        <Sidebar>
+          <CategoryList categories={category?.childrenCategories} route={route} setRoute={setRoute} />
+        </Sidebar>
 
-      <Content>
-        {category && <CategoryTitle category={category} route={route} />}
-        {articles && <ArticleList articles={articles} />}
-      </Content>
+        <Content>
+          {category && <CategoryTitle category={category} route={route} />}
+          {articles && <ArticleList articles={articles} />}
+        </Content>
 
-      <Footer>Alle Preise sind in Euro (€) inkl. gesetzlicher Umsatzsteuer und Versandkosten.</Footer>
-    </Page>
+        <Footer>Alle Preise sind in Euro (€) inkl. gesetzlicher Umsatzsteuer und Versandkosten.</Footer>
+      </Page>
+    </ThemeProvider>
   );
 };
 

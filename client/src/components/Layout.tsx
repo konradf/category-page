@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '../libs';
 
 const Page = styled('div')`
   display: grid;
@@ -12,8 +12,8 @@ const Page = styled('div')`
 
 const Header = styled('header')`
   grid-area: header;
-  background-color: #ffdcbd;
-  border-bottom: 1px solid #5d5d5d;
+  background-color: ${({ theme }) => theme.color.pink};
+  border-bottom: 1px solid ${({ theme }) => theme.color.dark};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,7 +25,7 @@ const Header = styled('header')`
 
 const Sidebar = styled('aside')`
   grid-area: sidebar;
-  background-color: #f3f3f3;
+  background-color: ${({ theme }) => theme.color.lightGray};
   padding: 0;
 `;
 
@@ -37,9 +37,9 @@ const Content = styled('main')`
 
 const Footer = styled('footer')`
   grid-area: footer;
-  background-color: #ff813c;
+  background-color: ${({ theme }) => theme.color.lightOrange};
   text-align: center;
-  color: #fffefe;
+  color: ${({ theme }) => theme.color.white};
   padding: 10px;
 `;
 

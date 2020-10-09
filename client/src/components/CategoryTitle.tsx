@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import { Category } from '../types';
-import { getCategorySummary } from '../libs';
+import { getCategorySummary, styled } from '../libs';
 
 interface CategoryTitleProps {
   category: Category;
