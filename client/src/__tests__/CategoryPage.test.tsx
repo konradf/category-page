@@ -1,17 +1,49 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import { CategoryPage } from '../CategoryPage';
 
-it('renders the home24 logo', () => {
-  const { getByAltText } = render(<CategoryPage id="1" />);
-  const linkElement = getByAltText(/Home 24/i);
+jest.mock('../libs/api', () => ({
+  fetchCategory: jest.fn().mockResolvedValue({
+    childrenCategories: [],
+    categoryArticles: [],
+  }),
+}));
 
-  expect(linkElement).toBeInTheDocument();
-});
+describe('CategoryPage', function () {
+  it('renders the home24 logo', async () => {
+    await act(async () => {
+      render(<CategoryPage id="1" />);
+    });
+    const logo = screen.getByAltText(/Home 24/i);
 
-it('renders the Kategorien label', () => {
-  const { getByText } = render(<CategoryPage id="1" />);
-  const linkElement = getByText(/kategorien/i);
+    expect(logo).toBeInTheDocument();
+  });
 
-  expect(linkElement).toBeInTheDocument();
+  it('renders the search input', async () => {
+    await act(async () => {
+      render(<CategoryPage id="1" />);
+    });
+    const input = screen.getByPlaceholderText(/Search.../i);
+
+    expect(input).toBeInTheDocument();
+  });
+
+  it('renders the Kategorien label', async () => {
+    await act(async () => {
+      render(<CategoryPage id="1" />);
+    });
+    const categoryLabel = screen.getByText(/kategorien/i);
+
+    expect(categoryLabel).toBeInTheDocument();
+  });
+
+  it('renders the footer content', async () => {
+    await act(async () => {
+      render(<CategoryPage id="1" />);
+    });
+    const footerContent = screen.getByText(/Alle Preise sind in Euro/i);
+
+    expect(footerContent).toBeInTheDocument();
+  });
 });

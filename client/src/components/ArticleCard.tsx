@@ -52,7 +52,7 @@ const Button = styled('div')`
 `;
 
 export const ArticleCard: React.FunctionComponent<ArticleCardProps> = ({ article }) => (
-  <Article className="article">
+  <Article>
     <Image alt={article.name} src={article.images[0].path} />
     <Title>{article.name}</Title>
     <Price>{priceFormatter.format(article.prices.regular.value / 100)}</Price>

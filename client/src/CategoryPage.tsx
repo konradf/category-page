@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
 import Logo from './assets/logo.svg';
-import { ArticleList, CategoryList, CategoryTitle, Search } from './components';
+import { ArticleList, CategoryList, CategoryTitle, Search, Error } from './components';
 import { Content, Footer, Header, Page, Sidebar } from './components/Layout';
 import { Article, Category } from './types';
 import { categoryExists, fetchCategory, filterCategoryArticles, theme } from './libs';
@@ -14,14 +14,19 @@ interface CategoryPageProps {
 
 const CategoryPage: React.FunctionComponent<CategoryPageProps> = ({ id }) => {
   const [category, setCategory] = React.useState<Category>();
+  const [error, setError] = React.useState(false);
   const [articles, setArticles] = React.useState<Article[]>();
   const [search, setSearch] = React.useState('');
   const [route, setRoute] = useRouter();
 
   React.useEffect(() => {
-    fetchCategory(id).then((category) => {
-      setCategory(category);
-    });
+    fetchCategory(id)
+      .then((category) => {
+        setCategory(category);
+      })
+      .catch(() => {
+        setError(true);
+      });
   }, [id]);
 
   React.useEffect(() => {
@@ -52,7 +57,8 @@ const CategoryPage: React.FunctionComponent<CategoryPageProps> = ({ id }) => {
         </Sidebar>
 
         <Content>
-          {!category && <Loader />}
+          {!category && !error && <Loader />}
+          {error && <Error />}
           {category && <CategoryTitle category={category} route={route} />}
           {articles && <ArticleList articles={articles} />}
         </Content>
